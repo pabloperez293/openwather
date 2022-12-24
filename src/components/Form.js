@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Form = () => {
+const Form = ({newLocation}) => {
     const [city, setCity] = useState("")
 
     const onSubmit = (evt) => {
@@ -8,6 +8,9 @@ const Form = () => {
         console.log({city})
 
         if(city === "" || !city) return;
+
+        // Si usamos una ciudad se pasa la ciudad
+        newLocation(city)
     }
 
   return (

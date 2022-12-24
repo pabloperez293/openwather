@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Form from './Form';
 
 const WeatherPanel = () => {
 
@@ -34,18 +35,47 @@ const WeatherPanel = () => {
                 if(!res.ok) throw {res}
                 return res.json()
             }).then((weatherData) =>{
+                console.log(weatherData)
                 setWeather(weatherData)
+            }).catch(error =>{
+                console.log(error)
+                setLoading(false)
+                setShow(false)
             })
+
+            // Forecast completar con la url
+            urlForecast = urlForecast + cityUrl + loc
+
+            await fetch(urlForecast).then((res) =>{
+                if(!res.ok) throw {res}
+                return res.json()
+            }).then((forecastData) =>{
+                console.log(forecastData)
+                setForecast(forecastData)
+
+                setLoading(false) //sppiner
+                setShow(true) // se ve la info
+
+            }).catch(error =>{
+                console.log(error)
+                setLoading(false)
+                setShow(false)
+            })
+
         }
 
     }
 
-
-
-
   return (
-    <div>WeatherPanel</div>
-  )
+        <React.Fragment>
+            <Form 
+                newLocation = { getLocation }
+
+            />
+
+        </React.Fragment>
+
+    )
 }
 
 export default WeatherPanel
