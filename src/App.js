@@ -1,5 +1,6 @@
 import './assets/css/App.css';
 import Navbar from './components/Navbar';
+import Spinner from './components/Spinner';
 import WeatherPanel from './components/WeatherPanel';
 
 
@@ -8,6 +9,7 @@ function App() {
     <div className="App">
       <Navbar/>
       <WeatherPanel />
+      <Spinner />
     </div>
   );
 }
